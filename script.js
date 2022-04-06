@@ -25,14 +25,3 @@ document.getElementById('button').addEventListener('click', function() {
 function splitStringIntoCharacters(input) {
   return input.split('');
 }
-
-let number = document.getElementById('number').value;
-while (number > 10) {
-  let digits = splitStringIntoCharacters(number);
-  let sum = 1;
-  for (let i = 0; i < digits.length; i++) {
-    sum *= Number(digits[i]);
-  }
-  console.log(sum);
-  number = sum;
-}
