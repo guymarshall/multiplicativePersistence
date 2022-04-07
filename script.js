@@ -9,9 +9,6 @@
 let linebreakHTML = '<br>';
 
 document.getElementById('button').addEventListener('click', function() {
-  // let number = document.getElementById('number').value;
-  // let digits = number.toString().split('');
-	// console.log(digits);
   let number = document.getElementById('number').value;
   let resultDiv = document.getElementById('result');
   resultDiv.innerHTML= '';
