@@ -6,11 +6,16 @@
   // multiply numbers together and return total
   // add one to count
 
+let linebreakHTML = '<br>';
+
 document.getElementById('button').addEventListener('click', function() {
   // let number = document.getElementById('number').value;
   // let digits = number.toString().split('');
 	// console.log(digits);
   let number = document.getElementById('number').value;
+  let resultDiv = document.getElementById('result');
+  resultDiv.innerHTML= '';
+
   while (number > 10) {
     let digits = splitStringIntoCharacters(number);
     let sum = 1;
@@ -19,6 +24,8 @@ document.getElementById('button').addEventListener('click', function() {
     }
     console.log(sum);
     number = sum.toString();
+    resultDiv.innerHTML += number;
+    resultDiv.innerHTML += linebreakHTML;  
   }
 });
 
