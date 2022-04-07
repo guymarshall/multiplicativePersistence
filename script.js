@@ -1,11 +1,3 @@
-// get number as input
-// while number not 1 digit:
-  // convert to string
-  // split into chars
-  // convert chars into numbers
-  // multiply numbers together and return total
-  // add one to count
-
 let linebreakHTML = '<br>';
 
 document.getElementById('button').addEventListener('click', function() {
@@ -19,7 +11,6 @@ document.getElementById('button').addEventListener('click', function() {
     for (let i = 0; i < digits.length; i++) {
       sum *= Number(digits[i]);
     }
-    console.log(sum);
     number = sum.toString();
     resultDiv.innerHTML += number;
     resultDiv.innerHTML += linebreakHTML;  
