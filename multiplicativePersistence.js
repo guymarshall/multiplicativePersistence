@@ -13,7 +13,7 @@ for (let i = 77551000000; i < 1000000000000000; i++) {
     highestSteps.number = i;
   }
   if (i % 1000000 == 0) {
-    console.log(`Upto ${i} so far...`);
+    console.log(`Upto ${i} so far: ${highestSteps.number}`);
   }
 }
 
