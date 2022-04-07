@@ -6,7 +6,7 @@ let highestSteps = {
   'number': 0
 };
 
-for (let i = 0; i < 1000000000000000; i++) {
+for (let i = 77551000000; i < 1000000000000000; i++) {
   // console.log(`${i}: ${multiplicativePersistence(i).steps}`);
   if (multiplicativePersistence(i).steps > highestSteps.steps) {
     highestSteps.steps = multiplicativePersistence(i).steps;
