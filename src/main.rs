@@ -10,7 +10,7 @@ fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
 		let digits_count = digits.len();
 
 		for number in 0..=digits_count {
-			sum *= digits[number] as i128;
+			sum *= digits[number].parse::<i128>().unwrap();
 		}
 
 		for (let i = 0; i < digits.length; i++) {
