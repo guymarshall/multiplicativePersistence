@@ -33,14 +33,10 @@ fn main() {
 	println!("Hello, world!");
 	let user_input: i128 = 277777788888899;
 
-	let mut highest_steps: HashMap<String, i128> = HashMap::new();
-
-	highest_steps.insert(
-		"steps".to_string(), 0
-	);
-	highest_steps.insert(
-		"number".to_string(), 0
-	);
+	let highest_steps: HashMap<String, i128> = HashMap::from([
+		("steps".to_string(), 0),
+		("number".to_string(), 0)
+	]);
 }
 
 /*
