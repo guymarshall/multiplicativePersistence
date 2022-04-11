@@ -13,10 +13,6 @@ fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
 			sum *= digits[number].parse::<i128>().unwrap();
 		}
 
-		for (let i = 0; i < digits.length; i++) {
-			sum *= Number(digits[i]);
-		}
-
 		user_input = sum.toString();
 		numbers.push(userInput);
 
