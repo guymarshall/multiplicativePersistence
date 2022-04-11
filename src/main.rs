@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 
-fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
-	let steps: i128 = 0;
-	let numbers: Vec<i128> = Vec::new();
+fn multiplicative_persistence(user_input: i128) -> i128 {
+	let mut steps: i128 = 0;
+	let mut numbers: Vec<i128> = Vec::new();
 	while user_input > 10 {
 		let string_number: String = user_input.to_string();
 		let digits: Vec<&str> = string_number.split("").collect();
-		let sum: i128 = 1;
+		let mut sum: i128 = 1;
 		let digits_count = digits.len();
 
 		for number in 0..=digits_count {
@@ -18,10 +18,7 @@ fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
 		steps += 1;
 	}
 
-	return HashMap::from([
-		("steps".to_string(), steps),
-		("numbers".to_string(), numbers)
-	]);
+	return steps;
 }
 
 fn main() {
