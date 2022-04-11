@@ -13,16 +13,20 @@ fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
 			sum *= digits[number].parse::<i128>().unwrap();
 		}
 
-		user_input = sum.toString();
-		numbers.push(userInput);
+		numbers.push(sum);
 
-		steps++;
+		steps += 1;
 	}
 
-	return {
-		'steps': steps,
-		'numbers': numbers
-	};
+	let mut result_vector: HashMap<String, i128> = HashMap::new();
+	result_vector.insert(
+		"steps".to_string(), steps
+	);
+	result_vector.insert(
+		"numbers".to_string(), numbers
+	);
+
+	return result_vector;
 }
 
 fn main() {
