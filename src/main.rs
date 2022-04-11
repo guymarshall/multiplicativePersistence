@@ -18,15 +18,10 @@ fn multiplicative_persistence(user_input: i128) -> HashMap<String, i128> {
 		steps += 1;
 	}
 
-	let mut result_vector: HashMap<String, i128> = HashMap::new();
-	result_vector.insert(
-		"steps".to_string(), steps
-	);
-	result_vector.insert(
-		"numbers".to_string(), numbers
-	);
-
-	return result_vector;
+	return HashMap::from([
+		("steps".to_string(), steps),
+		("numbers".to_string(), numbers)
+	]);
 }
 
 fn main() {
