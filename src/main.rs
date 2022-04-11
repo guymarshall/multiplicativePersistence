@@ -23,12 +23,28 @@ fn multiplicative_persistence(user_input: i128) -> i128 {
 
 fn main() {
 	println!("Hello, world!");
-	let user_input: i128 = 277777788888899;
+	let _user_input: i128 = 277777788888899;
 
 	let highest_steps: HashMap<String, i128> = HashMap::from([
 		("steps".to_string(), 0),
 		("number".to_string(), 0)
 	]);
+
+	let start: i128 = 77551000000;
+	let finish: i128 = 1000000000000000;
+
+	for number in start..=finish {
+		println!("{}: {}", number, multiplicative_persistence(number));
+		// if multiplicative_persistence(number) > highest_steps.get("steps") {
+		// 	highest_steps.get("steps") = multiplicative_persistence(number);
+		// 	highest_steps.get("number") += 1;
+		// }
+		// if number % 1000000 == 0 {
+		// 	println!("Upto {} so far: {:?}", number, highest_steps.get("number"));
+		// }
+	}
+
+	println!("Highest step count: {:?} at {:?}", highest_steps.get("number"), highest_steps.get("steps"));
 }
 
 /*
