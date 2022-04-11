@@ -1,6 +1,4 @@
-use std::collections::HashMap;
-
-fn multiplicative_persistence(user_input: i128) -> i128 {
+fn multiplicative_persistence(mut user_input: i128) -> i128 {
 	let mut steps: i128 = 0;
 	let mut numbers: Vec<i128> = Vec::new();
 	while user_input > 10 {
@@ -9,42 +7,40 @@ fn multiplicative_persistence(user_input: i128) -> i128 {
 		let mut sum: i128 = 1;
 		let digits_count = digits.len();
 
-		for number in 0..=digits_count {
+		for number in 1..digits_count - 1 {
 			sum *= digits[number].parse::<i128>().unwrap();
 		}
 
 		numbers.push(sum);
 
 		steps += 1;
+		user_input = sum;
 	}
 
 	return steps;
 }
 
 fn main() {
-	println!("Hello, world!");
-	let _user_input: i128 = 277777788888899;
+	// let _user_input: i128 = 277777788888899;
 
-	let highest_steps: HashMap<String, i128> = HashMap::from([
-		("steps".to_string(), 0),
-		("number".to_string(), 0)
-	]);
+	let mut highest_steps_count: i128 = 0;
+	let mut highest_steps_number: i128 = 0;
 
 	let start: i128 = 77551000000;
 	let finish: i128 = 1000000000000000;
 
 	for number in start..=finish {
-		println!("{}: {}", number, multiplicative_persistence(number));
-		// if multiplicative_persistence(number) > highest_steps.get("steps") {
-		// 	highest_steps.get("steps") = multiplicative_persistence(number);
-		// 	highest_steps.get("number") += 1;
-		// }
-		// if number % 1000000 == 0 {
-		// 	println!("Upto {} so far: {:?}", number, highest_steps.get("number"));
-		// }
+		// println!("{}: {}", number, multiplicative_persistence(number));
+		if multiplicative_persistence(number) > highest_steps_count {
+			highest_steps_count = multiplicative_persistence(number);
+			highest_steps_number = number;
+		}
+		if number % 1000000 == 0 {
+			println!("Upto {} so far: {}", number, highest_steps_number);
+		}
 	}
 
-	println!("Highest step count: {:?} at {:?}", highest_steps.get("number"), highest_steps.get("steps"));
+	println!("Highest step count: {} at {}", highest_steps_number, highest_steps_count);
 }
 
 /*
