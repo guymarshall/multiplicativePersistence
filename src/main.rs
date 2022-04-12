@@ -1,5 +1,5 @@
 fn product(mut input: i128) -> i128 {
-	let mut result = 1;
+	let mut result: i128 = 1;
 	// get each digit by mod instead of string conversion
 	while input > 0 {
 		result *= input % 10;
@@ -9,7 +9,7 @@ fn product(mut input: i128) -> i128 {
 }
   
 fn multiplicative_persistence(mut user_input: i128) -> i128 {
-	let mut steps = 0;
+	let mut steps: i128 = 0;
 	while user_input > 10 {
 		user_input = product(user_input);
 		steps += 1;
