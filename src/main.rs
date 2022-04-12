@@ -10,6 +10,7 @@ fn product(mut input: i128) -> i128 {
   
 fn multiplicative_persistence(mut user_input: i128) -> i128 {
 	let mut steps: i128 = 0;
+	// 10 is smallest double digit number
 	while user_input > 10 {
 		user_input = product(user_input);
 		steps += 1;
