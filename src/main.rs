@@ -1,25 +1,3 @@
-// fn multiplicative_persistence(mut user_input: i128) -> i128 {
-// 	let mut steps: i128 = 0;
-// 	let mut numbers: Vec<i128> = Vec::new();
-// 	while user_input > 10 {
-// 		let string_number: String = user_input.to_string();
-// 		let digits: Vec<&str> = string_number.split("").collect();
-// 		let mut sum: i128 = 1;
-// 		let digits_count = digits.len();
-
-// 		for number in 1..digits_count - 1 {
-// 			sum *= digits[number].parse::<i128>().unwrap();
-// 		}
-
-// 		numbers.push(sum);
-
-// 		steps += 1;
-// 		user_input = sum;
-// 	}
-
-// 	return steps;
-// }
-
 fn step(mut x: i128) -> i128 {
 	let mut result = 1;
 	while x > 0 {
