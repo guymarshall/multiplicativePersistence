@@ -18,7 +18,7 @@ fn multiplicative_persistence(mut user_input: i128) -> i128 {
 }
 
 fn main() {
-	// let _user_input: i128 = 277777788888899;
+	// largest step count discovered = 277777788888899
 
 	let mut highest_steps_count: i128 = 0;
 	let mut highest_steps_number: i128 = 0;
