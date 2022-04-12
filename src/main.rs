@@ -1,5 +1,6 @@
 fn step(mut input: i128) -> i128 {
 	let mut result = 1;
+	// get each digit by mod instead of string conversion
 	while input > 0 {
 	  result *= input % 10;
 	  input /= 10;
