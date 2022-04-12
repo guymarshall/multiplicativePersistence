@@ -1,8 +1,8 @@
-fn step(mut x: i128) -> i128 {
+fn step(mut input: i128) -> i128 {
 	let mut result = 1;
-	while x > 0 {
-	  result *= x % 10;
-	  x /= 10;
+	while input > 0 {
+	  result *= input % 10;
+	  input /= 10;
 	}
 	result
   }
