@@ -1,5 +1,5 @@
-fn product(mut input: i128) -> i128 {
-	let mut result: i128 = 1;
+fn product(mut input: u64) -> u64 {
+	let mut result: u64 = 1;
 	
 	// get each digit by mod instead of string conversion
 	while input > 0 {
@@ -9,8 +9,8 @@ fn product(mut input: i128) -> i128 {
 	result
 }
   
-fn multiplicative_persistence(mut user_input: i128) -> i128 {
-	let mut steps: i128 = 0;
+fn multiplicative_persistence(mut user_input: u64) -> u64 {
+	let mut steps: u64 = 0;
 
 	// 10 is smallest double digit number
 	while user_input >= 10 {
@@ -23,11 +23,11 @@ fn multiplicative_persistence(mut user_input: i128) -> i128 {
 fn main() {
 	// largest step count discovered = 277777788888899
 
-	let mut highest_steps_count: i128 = 0;
-	let mut highest_steps_number: i128 = 0;
+	let mut highest_steps_count: u64 = 0;
+	let mut highest_steps_number: u64 = 0;
 
-	let start: i128 = 77551000000;
-	let finish: i128 = 1000000000000000;
+	let start: u64 = 3434000000000;
+	let finish: u64 = 1000000000000000;
 
 	for number in start..=finish {
 		// println!("{}: {}", number, multiplicative_persistence(number));
@@ -35,7 +35,7 @@ fn main() {
 			highest_steps_count = multiplicative_persistence(number);
 			highest_steps_number = number;
 		}
-		if number % 1000000 == 0 {
+		if number % 100000000 == 0 {
 			println!("Upto {} so far: {}", number, highest_steps_number);
 		}
 	}
