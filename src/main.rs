@@ -26,7 +26,7 @@ fn main() {
 	let mut highest_steps_count: u64 = 0;
 	let mut highest_steps_number: u64 = 0;
 
-	let start: u64 = 3434000000000;
+	let start: u64 = 5740000000000;
 	let finish: u64 = 1000000000000000;
 
 	for number in start..=finish {
