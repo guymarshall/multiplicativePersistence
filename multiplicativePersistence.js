@@ -22,27 +22,6 @@ function multiplicativePersistence(userInput) {
 	return steps;
 }
 
-function OLD_multiplicativePersistence(userInput) {
-	let steps = 0;
-	const numbers = [];
-	while (userInput > 10) {
-		let digits = splitStringIntoCharacters(userInput.toString());
-		let sum = 1;
-		for (let i = 0; i < digits.length; i++) {
-			sum *= Number(digits[i]);
-		}
-		userInput = sum.toString();
-		numbers.push(userInput);
-
-		steps++;
-	}
-
-	return {
-		'steps': steps,
-		'numbers': numbers
-	};
-}
-
 // largest step count discovered = 277777788888899
 
 let highestStepsCount = 0;
