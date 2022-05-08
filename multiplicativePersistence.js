@@ -7,9 +7,25 @@
 		input /= 10;
 	}
 	result
+}*/
+
+function product(input) {
+	let result = 1;
+
+	// get each digit by mod instead of string conversion
+	while (input > 0) {
+		result *= input % 10;
+		input /= 10;
+	}
+
+	return result;
 }
 
-fn multiplicative_persistence(mut user_input: u64) -> u64 {
+/*function splitStringIntoCharacters(input) {
+	return input.split('');
+}*/
+
+/*fn multiplicative_persistence(mut user_input: u64) -> u64 {
 	let mut steps: u64 = 0;
 
 	// 10 is smallest double digit number
@@ -19,55 +35,21 @@ fn multiplicative_persistence(mut user_input: u64) -> u64 {
 	}
 	steps
 }
-
-fn main() {
-	// largest step count discovered = 277777788888899
-
-	let mut highest_steps_count: u64 = 0;
-	let mut highest_steps_number: u64 = 0;
-
-	let start: u64 = 5740000000000;
-	let finish: u64 = 1000000000000000;
-
-	for number in start..=finish {
-		// println!("{}: {}", number, multiplicative_persistence(number));
-		if multiplicative_persistence(number) > highest_steps_count {
-			highest_steps_count = multiplicative_persistence(number);
-			highest_steps_number = number;
-		}
-		if number % 100000000 == 0 {
-			println!("Upto {} so far: {}", number, highest_steps_number);
-		}
-	}
-
-	println!("Highest step count: {} at {}", highest_steps_number, highest_steps_count);
-}*/
-// let userInput = 277777788888899;
-// multiplicativePersistence(userInput);
-
-let highestSteps = {
-	'steps': 0,
-	'number': 0
-};
-
-for (let i = 77551000000; i < 1000000000000000; i++) {
-	// console.log(`${i}: ${multiplicativePersistence(i).steps}`);
-	if (multiplicativePersistence(i).steps > highestSteps.steps) {
-		highestSteps.steps = multiplicativePersistence(i).steps;
-		highestSteps.number = i;
-	}
-	if (i % 1000000 == 0) {
-		console.log(`Upto ${i} so far: ${highestSteps.number}`);
-	}
-}
-
-console.log(`Highest step count: ${highestSteps.number} at ${highestSteps.steps}`);
-
-function splitStringIntoCharacters(input) {
-	return input.split('');
-}
+*/
 
 function multiplicativePersistence(userInput) {
+	let steps = 0;
+
+	// 10 is smallest double digit number
+	while (userInput >= 10) {
+		userInput = product(userInput);
+		steps++;
+	}
+
+	return steps;
+}
+
+function OLD_multiplicativePersistence(userInput) {
 	let steps = 0;
 	const numbers = [];
 	while (userInput > 10) {
@@ -87,3 +69,24 @@ function multiplicativePersistence(userInput) {
 		'numbers': numbers
 	};
 }
+
+// largest step count discovered = 277777788888899
+
+let highestStepsCount = 0;
+let highestStepsNumber = 0;
+
+let start = 5740000000000;
+let finish = 1000000000000000;
+
+for (let i = start; i < finish; i++) {
+	// console.log(`${i}: ${multiplicativePersistence(i)}`);
+	if (multiplicativePersistence(i) > highestStepsCount) {
+		highestStepsCount = multiplicativePersistence(i);
+		highestStepsNumber = i;
+	}
+	if (i % 1000000 == 0) {
+		console.log(`Upto ${i} so far: ${highestStepsNumber}`);
+	}
+}
+
+console.log(`Highest step count: ${highestStepsNumber} at ${highestStepsCount}`);
