@@ -26,13 +26,14 @@ fn main() {
 	let mut highest_steps_count: u64 = 0;
 	let mut highest_steps_number: u64 = 0;
 
-	let start: u64 = 5743000000000;
+	let start: u64 = 5745600000000;
 	let finish: u64 = 1000000000000000;
 
 	for number in start..=finish {
 		// println!("{}: {}", number, multiplicative_persistence(number));
-		if multiplicative_persistence(number) > highest_steps_count {
-			highest_steps_count = multiplicative_persistence(number);
+		let result = multiplicative_persistence(number);
+		if result > highest_steps_count {
+			highest_steps_count = result;
 			highest_steps_number = number;
 		}
 		if number % 100000000 == 0 {
