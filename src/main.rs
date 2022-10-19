@@ -1,24 +1,4 @@
-fn product(mut input: u64) -> u64 {
-	let mut result: u64 = 1;
-	
-	// get each digit by mod instead of string conversion
-	while input > 0 {
-		result *= input % 10;
-		input /= 10;
-	}
-	result
-}
-  
-fn multiplicative_persistence(mut user_input: u64) -> u64 {
-	let mut steps: u64 = 0;
-
-	// 10 is smallest double digit number
-	while user_input >= 10 {
-		user_input = product(user_input);
-		steps += 1;
-	}
-	steps
-}
+mod math;
 
 fn main() {
 	// largest step count discovered = 277777788888899
@@ -31,7 +11,7 @@ fn main() {
 
 	for number in start..=finish {
 		// println!("{}: {}", number, multiplicative_persistence(number));
-		let result = multiplicative_persistence(number);
+		let result = math::multiplicative_persistence(number);
 		if result > highest_steps_count {
 			highest_steps_count = result;
 			highest_steps_number = number;
