@@ -19,3 +19,13 @@ pub fn multiplicative_persistence(mut user_input: u64) -> u64 {
 	}
 	steps
 }
+
+pub fn number_to_vector(number: u64) -> Vec<u64> {
+    let mut numbers: Vec<u64> = Vec::new();
+
+    for i in 1..number + 1 {
+        numbers.push(i);
+    }
+
+    return numbers;
+}
