@@ -1,5 +1,5 @@
-pub fn product(mut input: u64) -> u64 {
-	let mut result: u64 = 1;
+pub fn product(mut input: i64) -> i64 {
+	let mut result: i64 = 1;
 	
 	// get each digit by mod instead of string conversion
 	while input > 0 {
@@ -9,8 +9,8 @@ pub fn product(mut input: u64) -> u64 {
 	result
 }
   
-pub fn multiplicative_persistence(mut user_input: u64) -> u64 {
-	let mut steps: u64 = 0;
+pub fn multiplicative_persistence(mut user_input: i64) -> i64 {
+	let mut steps: i64 = 0;
 
 	// 10 is smallest double digit number
 	while user_input >= 10 {
@@ -20,8 +20,8 @@ pub fn multiplicative_persistence(mut user_input: u64) -> u64 {
 	steps
 }
 
-pub fn number_to_vector(number: u64) -> Vec<u64> {
-    let mut numbers: Vec<u64> = Vec::new();
+pub fn number_to_vector(number: i64) -> Vec<i64> {
+    let mut numbers: Vec<i64> = Vec::new();
 
     for i in 1..number + 1 {
         numbers.push(i);

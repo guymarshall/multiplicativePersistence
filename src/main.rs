@@ -3,11 +3,11 @@ mod math;
 fn main() {
 	// largest step count discovered = 277777788888899
 
-	let mut highest_steps_count: u64 = 0;
-	let mut highest_steps_number: u64 = 0;
+	let mut highest_steps_count: i64 = 0;
+	let mut highest_steps_number: i64 = 0;
 
-	let start: u64 = 5745600000000;
-	let finish: u64 = 1000000000000000;
+	let start: i64 = 5745600000000;
+	let finish: i64 = 277777788888899;
 
 	for number in start..=finish {
 		// println!("{}: {}", number, multiplicative_persistence(number));
