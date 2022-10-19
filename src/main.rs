@@ -13,10 +13,11 @@ fn main() {
 		if result > highest_steps_count {
 			highest_steps_count = result;
 			highest_steps_number = number;
+			println!("Upto {} so far with {} steps", number, result);
 		}
-		if number % 100000000 == 0 {
-			println!("Upto {} so far: {}", number, highest_steps_number);
-		}
+		// if number % 100000000 == 0 {
+		// 	println!("Upto {} so far: {}", number, highest_steps_number);
+		// }
 	}
 
 	println!("Highest step count: {} at {}", highest_steps_number, highest_steps_count);
