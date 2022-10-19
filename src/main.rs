@@ -9,7 +9,7 @@ fn main() {
 
 	for number in start..=finish {
 		// println!("{}: {}", number, multiplicative_persistence(number));
-		let result = math::multiplicative_persistence(number);
+		let result: i64 = math::multiplicative_persistence(number);
 		if result > highest_steps_count {
 			highest_steps_count = result;
 			highest_steps_number = number;
