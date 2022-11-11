@@ -8,16 +8,12 @@ fn main() {
 	let finish: i64 = 277777788888899;
 
 	(start..=finish).for_each(|number| {
-		// println!("{}: {}", number, multiplicative_persistence(number));
 		let result: i64 = math::multiplicative_persistence(number);
 		if result > highest_steps_count {
 			highest_steps_count = result;
 			highest_steps_number = number;
 			println!("Upto {} so far with {} steps", number, result);
 		}
-		// if number % 100000000 == 0 {
-		// 	println!("Upto {} so far: {}", number, highest_steps_number);
-		// }
 	});
 
 	println!("Highest step count: {} at {}", highest_steps_number, highest_steps_count);
