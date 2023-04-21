@@ -1,6 +1,8 @@
+#![forbid(unsafe_code)]
+
 pub fn product(mut input: i64) -> i64 {
 	let mut result: i64 = 1;
-	
+
 	// get each digit by mod instead of string conversion
 	while input > 0 {
 		result *= input % 10;
