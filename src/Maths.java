@@ -11,7 +11,7 @@ public class Maths {
         return result;
     }
 
-    private static boolean is_digit_present(long number) {
+    private static boolean isDigitPresent(long number) {
         while (number > 0) {
             if (number % 10 == (long) 0) {
                 break;
@@ -23,15 +23,15 @@ public class Maths {
         return number > 0;
     }
 
-    public static byte multiplicative_persistence(long user_input) {
-        if (is_digit_present(user_input)) {
+    public static byte multiplicativePersistence(long userInput) {
+        if (isDigitPresent(userInput)) {
             return 1;
         }
         byte steps = 0;
 
         // 10 is smallest double-digit number
-        while (user_input >= 10) {
-            user_input = product(user_input);
+        while (userInput >= 10) {
+            userInput = product(userInput);
             steps += 1;
         }
 
