@@ -5,10 +5,9 @@ public class Main
         byte highestStepsCount = 0;
         long highestStepsNumber = 0L;
 
-        int start = 0;
         long finish = 277777788888899L;
 
-        for (long i = start; i <= finish; i++)
+        for (long i = 0L; i <= finish; i++)
         {
             byte result = Maths.multiplicativePersistence(i);
 
