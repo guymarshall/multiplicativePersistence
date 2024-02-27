@@ -1,3 +1,14 @@
+/**
+ * 245
+ *      -> 2 * 4 * 5 = 40
+ *      -> 4 * 0 = 0
+ *      (2 steps)
+ * 3762
+ *      -> 3 * 7 * 6 * 2 = 252
+ *      -> 2 * 5 * 2 = 20
+ *      -> 2 * 0 = 0
+ *      (3 steps)
+ */
 public class Main
 {
     public static void main(String[] args)
