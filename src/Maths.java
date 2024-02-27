@@ -11,9 +11,9 @@ public class Maths {
         return result;
     }
 
-    private static boolean is_digit_present(long number, long digit) {
+    private static boolean is_digit_present(long number) {
         while (number > 0) {
-            if (number % 10 == digit) {
+            if (number % 10 == (long) 0) {
                 break;
             }
 
@@ -24,7 +24,7 @@ public class Maths {
     }
 
     public static byte multiplicative_persistence(long user_input) {
-        if (is_digit_present(user_input, 0)) {
+        if (is_digit_present(user_input)) {
             return 1;
         }
         byte steps = 0;
