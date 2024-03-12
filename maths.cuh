@@ -12,9 +12,9 @@ __device__ uint64_t product(uint64_t input) {
     return result;
 }
 
-__device__ bool isDigitPresent(uint64_t number) {
+__device__ bool isDigitPresent(uint64_t number, uint8_t digit) {
     while (number > 0) {
-        if (number % 10 == 0) {
+        if (number % 10 == digit) {
             return true;
         }
 
@@ -25,7 +25,7 @@ __device__ bool isDigitPresent(uint64_t number) {
 }
 
 __device__ uint16_t multiplicativePersistence(uint64_t userInput) {
-    if (isDigitPresent(userInput)) {
+    if (isDigitPresent(userInput, 0)) {
         return 1;
     }
     uint16_t steps = 0;
