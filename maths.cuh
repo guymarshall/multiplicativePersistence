@@ -15,13 +15,13 @@ __device__ uint64_t product(uint64_t input) {
 __device__ bool isDigitPresent(uint64_t number) {
     while (number > 0) {
         if (number % 10 == 0) {
-            break;
+            return true;
         }
 
         number = number / 10;
     }
 
-    return number > 0;
+    return false;
 }
 
 __device__ uint16_t multiplicativePersistence(uint64_t userInput) {
