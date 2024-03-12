@@ -1,75 +1,52 @@
-#include <cstdint>
-#include <iostream>
-#include <vector>
+#include <stdio.h>
+#include <stdint.h>
 
 #include "maths.cuh"
 
-#define LOG(input) std::cout << input << std::endl;
+const uint16_t NUMBERS_PER_CHUNK = 1024;
+const uint16_t CUDA_CORES = 896;
+const uint64_t FINISH = 277777788888899;
 
-// __global__ void add(uint64_t *a, uint64_t *b, uint64_t *c, size_t size) {
-//     uint64_t i = threadIdx.x + blockDim.x * blockIdx.x;
-//     if (i < size) {
-//         c[i] = a[i] + b[i];
-//     }
-// }
+__global__ void calculatePersistence(uint64_t chunkStart, uint8_t* stepCounts) {
+    int tid = threadIdx.x + blockIdx.x * blockDim.x;
 
-int main(void) {
+    if (tid < NUMBERS_PER_CHUNK) {
+        uint64_t currentNumber = chunkStart + tid;
+        stepCounts[tid] = multiplicativePersistence(currentNumber);
+    }
+}
+
+int main() {
     uint8_t highestStepsCount = 0;
     uint64_t highestStepsNumber = 0;
-    uint64_t finish = 277777788888899;
 
-    for (uint64_t i = 0; i <= finish; i++) {
-        uint16_t result = multiplicativePersistence(i);
+    const size_t size = NUMBERS_PER_CHUNK * sizeof(uint8_t);
+    uint8_t* hostStepCounts = (uint8_t*) malloc(size);
 
-        if (result > highestStepsCount) {
-            highestStepsCount = result;
-            highestStepsNumber = i;
-            std::cout << "Up to " << i << " so far with " << result << " steps" << std::endl;
+    uint8_t* deviceStepCounts;
+    cudaMalloc((void**) &deviceStepCounts, size);
+
+    for (uint64_t chunkStart = 0; chunkStart <= FINISH - NUMBERS_PER_CHUNK; chunkStart += NUMBERS_PER_CHUNK) {
+        calculatePersistence<<<1, CUDA_CORES>>>(chunkStart, deviceStepCounts);
+
+        cudaMemcpy(hostStepCounts, deviceStepCounts, size, cudaMemcpyDeviceToHost);
+
+        for (int i = 0; i < NUMBERS_PER_CHUNK; ++i) {
+            uint64_t currentNumber = chunkStart + i;
+            uint8_t result = hostStepCounts[i];
+
+            if (result > highestStepsCount) {
+                highestStepsCount = result;
+                highestStepsNumber = currentNumber;
+                printf("Up to %ld so far with %d steps\n", currentNumber, result);
+            }
         }
     }
 
-    std::cout << "Highest step count: " << highestStepsNumber << " at " << highestStepsCount << std::endl;
+    printf("Highest step count: %ld at %d\n", highestStepsNumber, highestStepsCount);
 
-
-
-
-    // const uint64_t LIMIT = 1024;
-    // const size_t size = LIMIT * sizeof(uint64_t);
-
-    // std::vector<uint64_t> vectorA(LIMIT);
-    // std::vector<uint64_t> vectorB(LIMIT);
-    // std::vector<uint64_t> vectorC(LIMIT);
-
-    // for (uint64_t i = 0; i < LIMIT; i++) {
-    //     vectorA[i] = i;
-    //     vectorB[i] = LIMIT - i;
-    // }
-
-    // uint64_t *deviceA, *deviceB, *deviceC;
-
-    // cudaMalloc(&deviceA, size);
-    // cudaMalloc(&deviceB, size);
-    // cudaMalloc(&deviceC, size);
-
-    // cudaMemcpy(deviceA, vectorA.data(), size, cudaMemcpyHostToDevice);
-    // cudaMemcpy(deviceB, vectorB.data(), size, cudaMemcpyHostToDevice);
-
-    // add<<<LIMIT / 256, 256>>>(deviceA, deviceB, deviceC, LIMIT);
-
-    // cudaDeviceSynchronize();
-
-    // cudaMemcpy(vectorC.data(), deviceC, size, cudaMemcpyDeviceToHost);
-
-    // cudaFree(deviceA);
-    // cudaFree(deviceB);
-    // cudaFree(deviceC);
-
-    // uint64_t resultSum = 0;
-    // for (uint64_t i = 0; i < LIMIT; i++) {
-    //     resultSum += vectorC[i];
-    // }
-
-    // std::cout << "Result: sum = " << resultSum << std::endl;
+    cudaFree(deviceStepCounts);
+    free(hostStepCounts);
 
     return 0;
 }

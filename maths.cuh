@@ -1,6 +1,6 @@
 #include <cstdint>
 
-uint64_t product(uint64_t input) {
+__device__ uint64_t product(uint64_t input) {
     uint64_t result = 1;
 
     // get each digit by mod instead of string conversion
@@ -12,7 +12,7 @@ uint64_t product(uint64_t input) {
     return result;
 }
 
-bool isDigitPresent(uint64_t number) {
+__device__ bool isDigitPresent(uint64_t number) {
     while (number > 0) {
         if (number % 10 == 0) {
             break;
@@ -24,7 +24,7 @@ bool isDigitPresent(uint64_t number) {
     return number > 0;
 }
 
-uint16_t multiplicativePersistence(uint64_t userInput) {
+__device__ uint16_t multiplicativePersistence(uint64_t userInput) {
     if (isDigitPresent(userInput)) {
         return 1;
     }
