@@ -11,7 +11,7 @@ pub fn product(mut input: i64) -> i64 {
     result
 }
 
-pub fn is_digit_present(mut number: i64) -> bool {
+pub fn contains_zero(mut number: i64) -> bool {
     while number > 0 {
         if number % 10 == 0 {
             return true;
@@ -24,9 +24,6 @@ pub fn is_digit_present(mut number: i64) -> bool {
 }
 
 pub fn multiplicative_persistence(mut user_input: i64) -> i64 {
-    if is_digit_present(user_input) {
-        return 1;
-    }
     let mut steps: i64 = 0;
 
     // 10 is the smallest double-digit number

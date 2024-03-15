@@ -1,6 +1,6 @@
 #![forbid(unsafe_code)]
 
-use crate::maths::multiplicative_persistence;
+use crate::maths::{contains_zero, multiplicative_persistence};
 
 mod maths;
 
@@ -17,7 +17,7 @@ fn main() {
     let start: i64 = 0;
     let finish: i64 = 277777788888899;
 
-    (start..=finish).for_each(|number| {
+    (start..=finish).filter(|number| !contains_zero(*number)).for_each(|number| {
         let result: i64 = multiplicative_persistence(number);
         if result > highest_steps_count {
             highest_steps_count = result;
