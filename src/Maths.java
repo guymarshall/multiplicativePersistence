@@ -1,55 +1,56 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class Maths {
-    public static long product(long input) {
-        long result = 1;
+    public static BigInteger product(BigInteger input) {
+        BigInteger result = BigInteger.ONE;
 
         // get each digit by mod instead of string conversion
-        while (input > 0) {
-            result *= input % 10;
-            input /= 10;
+        while (input.compareTo(BigInteger.ZERO) > 0) {
+            result = result.parallelMultiply(input.mod(BigInteger.TEN));
+            input = input.divide(BigInteger.TEN);
         }
 
         return result;
     }
 
-    public static long multiplicativePersistence(long userInput) {
-        long steps = 0;
+    public static int multiplicativePersistence(BigInteger userInput) {
+        int steps = 0;
 
         // 10 is the smallest double-digit number
-        while (userInput >= 10) {
+        while (userInput.compareTo(BigInteger.TEN) > 0) {
             userInput = product(userInput);
-            steps += 1;
+            steps++;
         }
 
         return steps;
     }
 
-    public static ArrayList<Long> getPrimeFactors(long number) {
-        ArrayList<Long> factors = new ArrayList<>();
+    public static ArrayList<BigInteger> getPrimeFactors(BigInteger number) {
+        ArrayList<BigInteger> factors = new ArrayList<>();
 
-        while (number % 2 == 0) {
-            factors.add(2L);
-            number /= 2;
+        while (number.mod(BigInteger.TWO).compareTo(BigInteger.ZERO) == 0) {
+            factors.add(BigInteger.TWO);
+            number = number.divide(BigInteger.TWO);
         }
 
-        long factor = 3;
-        while (factor * factor <= number) {
-            while (number % factor == 0) {
+        BigInteger factor = BigInteger.valueOf(3);
+        while (factor.parallelMultiply(factor).compareTo(number) <= 0) {
+            while (number.mod(factor).compareTo(BigInteger.ZERO) == 0) {
                 factors.add(factor);
-                number /= factor;
+                number = number.divide(factor);
             }
-            factor += 2;
+            factor = factor.add(BigInteger.TWO);
         }
 
-        if (number > 2) {
+        if (number.compareTo(BigInteger.TWO) > 0) {
             factors.add(number);
         }
 
         return factors;
     }
 
-    public static boolean containsOnlySingleDigitFactors(ArrayList<Long> factors) {
-        return factors.stream().noneMatch(factor -> factor > 9);
+    public static boolean containsOnlySingleDigitFactors(ArrayList<BigInteger> factors) {
+        return factors.stream().noneMatch(factor -> factor.compareTo(BigInteger.valueOf(9)) > 0);
     }
 }
