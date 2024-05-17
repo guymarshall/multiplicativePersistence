@@ -16,6 +16,10 @@ pub fn product(mut input: BigInt) -> BigInt {
 }
 
 pub fn multiplicative_persistence(mut user_input: BigInt) -> i32 {
+    if user_input.to_string().chars().any(|character| !matches!(character, '2' | '7' | '8' | '9')) {
+        return 0;
+    }
+
     let mut steps: i32 = 0;
 
     // 10 is the smallest double-digit number
