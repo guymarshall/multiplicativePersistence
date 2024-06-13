@@ -20,7 +20,9 @@ fn main() {
             println!("Numbers left: {count}");
             count -= 1;
 
-            if contains_only_single_digit_factors(get_prime_factors(number.clone())) {
+            let prime_factors: Vec<BigInt> = get_prime_factors(number.clone());
+            let contains_only_single_digit_factors: bool = contains_only_single_digit_factors(prime_factors);
+            if contains_only_single_digit_factors {
                 println!("{number}");
             }
         }

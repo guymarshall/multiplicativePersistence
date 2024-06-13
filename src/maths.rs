@@ -56,5 +56,5 @@ pub fn get_prime_factors(mut number: BigInt) -> Vec<BigInt> {
 }
 
 pub fn contains_only_single_digit_factors(factors: Vec<BigInt>) -> bool {
-    !factors.par_iter().any(|factor: &BigInt| *factor > BigInt::from(9))
+    factors.par_iter().all(|factor: &BigInt| *factor < BigInt::from(10))
 }
