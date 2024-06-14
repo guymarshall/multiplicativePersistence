@@ -1,5 +1,6 @@
 #![forbid(unsafe_code)]
 
+use std::process::exit;
 use std::str::FromStr;
 use std::time::Instant;
 use num::BigInt;
@@ -24,6 +25,7 @@ fn main() {
             let contains_only_single_digit_factors: bool = contains_only_single_digit_factors(prime_factors);
             if contains_only_single_digit_factors {
                 println!("{number}");
+                exit(0);
             }
         }
 
