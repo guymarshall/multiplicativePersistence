@@ -8,6 +8,8 @@ use crate::maths::{contains_only_single_digit_factors, get_prime_factors, multip
 
 mod maths;
 
+// 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
+
 // 277777788888899
 
 fn main() {

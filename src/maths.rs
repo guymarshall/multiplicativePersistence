@@ -1,5 +1,3 @@
-#![forbid(unsafe_code)]
-
 use num::{BigInt, One, Zero};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 
@@ -16,7 +14,11 @@ pub fn product(mut input: BigInt) -> BigInt {
 }
 
 pub fn multiplicative_persistence(mut user_input: BigInt) -> i32 {
-    if user_input.to_string().chars().any(|character| !matches!(character, '2' | '7' | '8' | '9')) {
+    if user_input
+        .to_string()
+        .chars()
+        .any(|character: char| !matches!(character, '2' | '7' | '8' | '9'))
+    {
         return 0;
     }
 
@@ -56,5 +58,7 @@ pub fn get_prime_factors(mut number: BigInt) -> Vec<BigInt> {
 }
 
 pub fn contains_only_single_digit_factors(factors: Vec<BigInt>) -> bool {
-    factors.par_iter().all(|factor: &BigInt| *factor < BigInt::from(10))
+    factors
+        .par_iter()
+        .all(|factor: &BigInt| *factor < BigInt::from(10))
 }
