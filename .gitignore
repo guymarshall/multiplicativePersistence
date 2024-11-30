@@ -3,3 +3,5 @@
 .vscode/
 .vs/
 *.iml
+11.txt
+__pycache__/
