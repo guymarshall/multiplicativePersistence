@@ -52,12 +52,13 @@ def append_to_file(filename: str, data: int):
 def main():
     filename: str = "11.txt"
     create_file_if_not_exists(filename)
-    number: int = read_last_number_from_file("11.txt") or 0
+    number: int = read_last_number_from_file("11.txt") or 47_180_000_000
 
     while True:
         multiplicative_persistence: int = get_multiplicative_persistence(number)
 
-        print(f"{number}", end="\r")
+        if number % 10_000_000 == 0:
+            print(f"{number:_}")
 
         if multiplicative_persistence == 11:
             append_to_file(filename, number)
