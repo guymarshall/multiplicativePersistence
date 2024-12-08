@@ -1,64 +1,53 @@
-use num::{BigInt, One, Zero};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 
-pub fn product(mut input: BigInt) -> BigInt {
-    let mut result: BigInt = BigInt::one();
+pub fn product(mut number: i64) -> i64 {
+    let mut result: i64 = 1;
 
     // get each digit by mod instead of string conversion
-    while input > BigInt::zero() {
-        result *= &input % 10;
-        input /= 10;
+    while number > 0 {
+        result *= number % 10;
+        number /= 10;
     }
 
     result
 }
 
-pub fn multiplicative_persistence(mut user_input: BigInt) -> i32 {
-    if user_input
-        .to_string()
-        .chars()
-        .any(|character: char| !matches!(character, '2' | '7' | '8' | '9'))
-    {
-        return 0;
-    }
-
+pub fn multiplicative_persistence(mut number: i64) -> i32 {
     let mut steps: i32 = 0;
 
     // 10 is the smallest double-digit number
-    while user_input > BigInt::from(10) {
-        user_input = product(user_input);
+    while number > 10 {
+        number = product(number);
         steps += 1;
     }
 
     steps
 }
 
-pub fn get_prime_factors(mut number: BigInt) -> Vec<BigInt> {
-    let mut factors: Vec<BigInt> = vec![];
+pub fn get_prime_factors(mut number: i64) -> Vec<i64> {
+    let mut factors: Vec<i64> = vec![];
 
-    while &number % BigInt::from(2) == BigInt::zero() {
-        factors.push(BigInt::from(2));
-        number /= BigInt::from(2);
+    while &number % 2 == 0 {
+        factors.push(2);
+        number /= 2;
     }
 
-    let mut factor: BigInt = BigInt::from(3);
-    while &factor * &factor <= number {
-        while &number % &factor == BigInt::zero() {
-            factors.push(factor.clone());
+    let mut factor: i64 = 3;
+    while factor * factor <= number {
+        while number % factor == 0 {
+            factors.push(factor);
             number /= &factor;
         }
-        factor += BigInt::from(2);
+        factor += 2;
     }
 
-    if number > BigInt::from(2) {
+    if number > 2 {
         factors.push(number);
     }
 
     factors
 }
 
-pub fn contains_only_single_digit_factors(factors: Vec<BigInt>) -> bool {
-    factors
-        .par_iter()
-        .all(|factor: &BigInt| *factor < BigInt::from(10))
+pub fn contains_only_single_digit_factors(factors: Vec<i64>) -> bool {
+    factors.par_iter().all(|factor: &i64| *factor < 10)
 }

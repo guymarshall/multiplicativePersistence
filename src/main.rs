@@ -1,35 +1,30 @@
-#![forbid(unsafe_code)]
-
+use crate::maths::{
+    contains_only_single_digit_factors, get_prime_factors, multiplicative_persistence,
+};
 use std::process::exit;
-use std::str::FromStr;
-use std::time::Instant;
-use num::BigInt;
-use crate::maths::{contains_only_single_digit_factors, get_prime_factors, multiplicative_persistence};
 
 mod maths;
 
 // 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
 
-// 277777788888899
-
 fn main() {
-    let start_time: Instant = Instant::now();
+    let mut number: i64 = 277_778_540_000_000;
 
-    let mut count: i32 = 1000;
-    const LAST_NUMBER: &str = "277779889788879";
-    let mut number: BigInt = BigInt::from_str(LAST_NUMBER).unwrap();
+    loop {
+        let multiplicative_persistence: i32 = multiplicative_persistence(number);
 
-    while count > 0 {
-        let multiplicative_persistence: i32 = multiplicative_persistence(number.clone());
+        if number % 10_000_000 == 0 {
+            println!("{number}");
+        }
 
         if multiplicative_persistence == 11 {
-            println!("Numbers left: {count}");
-            count -= 1;
+            println!("{number} has a multiplicative persistence of 11! Checking factors...");
 
-            let prime_factors: Vec<BigInt> = get_prime_factors(number.clone());
-            let contains_only_single_digit_factors: bool = contains_only_single_digit_factors(prime_factors);
-            if contains_only_single_digit_factors {
-                println!("Number found!");
+            let factors: Vec<i64> = get_prime_factors(number);
+
+            let factors_are_all_single_digits: bool = contains_only_single_digit_factors(factors);
+
+            if factors_are_all_single_digits {
                 println!("{number}");
                 exit(0);
             }
@@ -37,10 +32,4 @@ fn main() {
 
         number += 1;
     }
-
-    println!("{}", number);
-
-    let end_time: Instant = Instant::now();
-
-    println!("Elapsed time: {:?}", end_time - start_time);
 }
