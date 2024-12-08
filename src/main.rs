@@ -7,13 +7,15 @@ mod maths;
 
 // 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
 
+const UPDATE_FREQUENCY: i64 = 10_000_000;
+
 fn main() {
     let mut number: i64 = 277_778_540_000_000;
 
     loop {
         let multiplicative_persistence: i32 = multiplicative_persistence(number);
 
-        if number % 10_000_000 == 0 {
+        if number % UPDATE_FREQUENCY == 0 {
             println!("{number}");
         }
 

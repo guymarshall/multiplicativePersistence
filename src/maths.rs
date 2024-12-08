@@ -1,5 +1,3 @@
-use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
-
 pub fn product(mut number: i64) -> i64 {
     let mut result: i64 = 1;
 
@@ -49,5 +47,5 @@ pub fn get_prime_factors(mut number: i64) -> Vec<i64> {
 }
 
 pub fn contains_only_single_digit_factors(factors: Vec<i64>) -> bool {
-    factors.par_iter().all(|factor: &i64| *factor < 10)
+    factors.iter().all(|factor: &i64| *factor < 10)
 }
