@@ -22,30 +22,25 @@ pub fn multiplicative_persistence(mut number: i64) -> i32 {
     steps
 }
 
-pub fn get_prime_factors(mut number: i64) -> Vec<i64> {
-    let mut factors: Vec<i64> = vec![];
-
+pub fn contains_only_single_digit_factors(mut number: i64) -> bool {
     while &number % 2 == 0 {
-        factors.push(2);
         number /= 2;
     }
 
     let mut factor: i64 = 3;
     while factor * factor <= number {
         while number % factor == 0 {
-            factors.push(factor);
+            if factor > 9 {
+                return false;
+            }
             number /= &factor;
         }
         factor += 2;
     }
 
-    if number > 2 {
-        factors.push(number);
+    if number > 9 {
+        return false;
     }
 
-    factors
-}
-
-pub fn contains_only_single_digit_factors(factors: Vec<i64>) -> bool {
-    factors.iter().all(|factor: &i64| *factor < 10)
+    true
 }

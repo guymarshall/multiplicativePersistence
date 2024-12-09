@@ -1,6 +1,4 @@
-use crate::maths::{
-    contains_only_single_digit_factors, get_prime_factors, multiplicative_persistence,
-};
+use crate::maths::{contains_only_single_digit_factors, multiplicative_persistence};
 use std::process::exit;
 
 mod maths;
@@ -10,7 +8,7 @@ mod maths;
 const UPDATE_FREQUENCY: i64 = 10_000_000;
 
 fn main() {
-    let mut number: i64 = 277_778_540_000_000;
+    let mut number: i64 = 277780190000000;
 
     loop {
         let multiplicative_persistence: i32 = multiplicative_persistence(number);
@@ -22,9 +20,7 @@ fn main() {
         if multiplicative_persistence == 11 {
             println!("{number} has a multiplicative persistence of 11! Checking factors...");
 
-            let factors: Vec<i64> = get_prime_factors(number);
-
-            let factors_are_all_single_digits: bool = contains_only_single_digit_factors(factors);
+            let factors_are_all_single_digits: bool = contains_only_single_digit_factors(number);
 
             if factors_are_all_single_digits {
                 println!("{number}");
