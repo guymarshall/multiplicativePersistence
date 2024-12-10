@@ -8,7 +8,7 @@ mod maths;
 const UPDATE_FREQUENCY: i64 = 10_000_000;
 
 fn main() {
-    let mut number: i64 = 277780190000000;
+    let mut number: i64 = 277777788888899;
 
     loop {
         let multiplicative_persistence: i32 = multiplicative_persistence(number);

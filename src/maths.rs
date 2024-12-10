@@ -14,7 +14,7 @@ pub fn multiplicative_persistence(mut number: i64) -> i32 {
     let mut steps: i32 = 0;
 
     // 10 is the smallest double-digit number
-    while number > 10 {
+    while number >= 10 {
         number = product(number);
         steps += 1;
     }
