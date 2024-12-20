@@ -23,22 +23,16 @@ pub fn multiplicative_persistence(mut number: i64) -> i32 {
 }
 
 pub fn contains_only_single_digit_factors(mut number: i64) -> bool {
-    while &number % 2 == 0 {
-        number /= 2;
-    }
-
     let mut factor: i64 = 3;
-    while factor * factor <= number {
+    while factor * factor <= number && factor < 8 {
         while number % factor == 0 {
-            if factor > 9 {
-                return false;
-            }
             number /= &factor;
         }
-        factor += 2;
+
+        factor += if factor == 2 { 1 } else { 2 };
     }
 
-    if number > 9 {
+    if number > 7 {
         return false;
     }
 
