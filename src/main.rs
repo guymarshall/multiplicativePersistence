@@ -17,8 +17,10 @@ fn main() {
             println!("{number}");
         }
 
-        if multiplicative_persistence == 11 {
-            println!("{number} has a multiplicative persistence of 11! Checking factors...");
+        if multiplicative_persistence > 10 {
+            println!(
+                "{number} has a multiplicative persistence of at least 11! Checking factors..."
+            );
 
             let factors_are_all_single_digits: bool = contains_only_single_digit_factors(number);
 
