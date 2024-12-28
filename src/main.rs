@@ -8,9 +8,8 @@ mod maths;
 const UPDATE_FREQUENCY: i64 = 10_000_000;
 
 fn main() {
-    let mut number: i64 = 277777788888899;
-
-    loop {
+    #[allow(clippy::infinite_iter)]
+    (277781550000000..).for_each(|number: i64| {
         let multiplicative_persistence: i32 = multiplicative_persistence(number);
 
         if number % UPDATE_FREQUENCY == 0 {
@@ -29,7 +28,5 @@ fn main() {
                 exit(0);
             }
         }
-
-        number += 1;
-    }
+    });
 }
