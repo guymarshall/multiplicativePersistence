@@ -6,16 +6,14 @@ mod maths;
 
 // 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
 
-const START: i64 = 278127467000000;
-const CHUNK_SIZE: i64 = 1_000_000;
+const START: i64 = 278787230000000;
+const CHUNK_SIZE: i64 = 200_000_000;
 const STEP: usize = CHUNK_SIZE as usize;
 
 fn main() {
     #[allow(clippy::infinite_iter)]
     (START..).step_by(STEP).for_each(|first: i64| {
         let numbers: Vec<i64> = (first..first + CHUNK_SIZE).collect();
-
-        println!("{first}");
 
         numbers.par_iter().for_each(|number: &i64| {
             let multiplicative_persistence: i32 = multiplicative_persistence(*number);
@@ -34,5 +32,7 @@ fn main() {
                 }
             }
         });
+
+        println!("{first}");
     });
 }
