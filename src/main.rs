@@ -1,19 +1,24 @@
 use crate::maths::{contains_only_single_digit_factors, multiplicative_persistence};
 use rayon::prelude::*;
 use std::process::exit;
+use crate::memory::calculate_chunk_size;
 
 mod maths;
+mod memory;
 
 // 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
-
-const START: i64 = 278787230000000;
-const CHUNK_SIZE: i64 = 200_000_000;
-const STEP: usize = CHUNK_SIZE as usize;
+// TODO: once each chunk is processed, write back to the file to change
+// TODO: this to the latest number checked
+const START: i64 = 277782216534132;
 
 fn main() {
+    // let START: i64 = 278796000000000; // the number I got to with the buggy code
+    let chunk_size: i64 = calculate_chunk_size() as i64;
+    let step: usize = chunk_size as usize;
+
     #[allow(clippy::infinite_iter)]
-    (START..).step_by(STEP).for_each(|first: i64| {
-        let numbers: Vec<i64> = (first..first + CHUNK_SIZE).collect();
+    (START..).step_by(step).for_each(|first: i64| {
+        let numbers: Vec<i64> = (first..first + chunk_size).collect();
 
         numbers.par_iter().for_each(|number: &i64| {
             let multiplicative_persistence: i32 = multiplicative_persistence(*number);
