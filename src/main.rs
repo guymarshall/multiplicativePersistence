@@ -9,10 +9,9 @@ mod memory;
 // 0, 10, 25, 39, 77, 679, 6788, 68889, 2677889, 26888999, 3778888999, 277777788888899
 // TODO: once each chunk is processed, write back to the file to change
 // TODO: this to the latest number checked
-const START: i64 = 277782216534132;
+const START: i64 = 280826826401624;
 
 fn main() {
-    // let START: i64 = 278796000000000; // the number I got to with the buggy code
     let chunk_size: i64 = calculate_chunk_size() as i64;
     let step: usize = chunk_size as usize;
 
