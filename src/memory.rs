@@ -1,4 +1,4 @@
-use sysinfo::{System};
+use sysinfo::System;
 
 pub(crate) fn calculate_chunk_size() -> usize {
     let mut system: System = System::new_all();
