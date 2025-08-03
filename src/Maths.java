@@ -1,6 +1,32 @@
 import java.math.BigInteger;
 
-public class Maths {
+public final class Maths {
+    public static boolean containsZero(BigInteger number) {
+        while (number.compareTo(BigInteger.ZERO) >= 0) {
+            final int DIGIT = number.mod(BigInteger.TEN).intValueExact();
+
+            if (DIGIT == 0) {
+                return true;
+            }
+
+            number = number.divide(BigInteger.TEN);
+        }
+        return false;
+    }
+
+    public static boolean containsFive(BigInteger number) {
+        while (number.compareTo(BigInteger.ZERO) >= 0) {
+            final int DIGIT = number.mod(BigInteger.TEN).intValueExact();
+
+            if (DIGIT == 5) {
+                return true;
+            }
+
+            number = number.divide(BigInteger.TEN);
+        }
+        return false;
+    }
+
     public static BigInteger product(BigInteger number)  {
         BigInteger result = BigInteger.ONE;
 

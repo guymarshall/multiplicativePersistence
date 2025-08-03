@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 
-public class File {
+public final class File {
     public static void saveToFile(String filename, BigInteger numberToSave) {
         try (
             FileWriter fileWriter = new FileWriter(filename, true);
