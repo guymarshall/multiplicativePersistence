@@ -7,7 +7,7 @@ use crate::maths::multiplicative_persistence;
 
 mod maths;
 
-const LIMIT: usize = 500;
+const LIMIT: usize = 1000;
 
 const fn generate_numbers<const LIMIT: usize>() -> [usize; LIMIT] {
     let mut numbers: [usize; LIMIT] = [0usize; LIMIT];

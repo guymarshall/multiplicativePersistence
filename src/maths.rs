@@ -1,23 +1,26 @@
+use std::fmt::Write;
+
 use rug::Integer;
-
-fn product(mut number: Integer) -> Integer {
-    let mut result: Integer = Integer::from(1);
-
-    // get each digit by mod instead of string conversion
-    while number > 0 {
-        result *= Integer::from(&number % 10);
-        number /= 10;
-    }
-
-    result
-}
 
 pub(crate) fn multiplicative_persistence(mut number: Integer) -> i8 {
     let mut steps: i8 = 0;
 
-    // 10 is the smallest double-digit number
+    let mut buffer: String = String::with_capacity(1024);
+
     while number >= 10 {
-        number = product(number);
+        buffer.clear();
+        write!(&mut buffer, "{number}").unwrap();
+
+        let mut product: Integer = Integer::from(1);
+        for byte in buffer.bytes() {
+            if byte == b'0' {
+                product = Integer::from(0);
+                break;
+            }
+            product *= byte - b'0';
+        }
+
+        number = product;
         steps += 1;
     }
 
