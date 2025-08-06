@@ -1,5 +1,6 @@
 use std::process::exit;
 
+use indicatif::{ProgressBar, ProgressStyle};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use rug::Integer;
 
@@ -26,6 +27,15 @@ fn main() {
 
     const NUMBERS: [usize; LIMIT] = generate_numbers();
 
+    let progress_bar: ProgressBar = ProgressBar::new(LIMIT as u64);
+    progress_bar.set_style(
+        ProgressStyle::with_template(
+            "[{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} ({percent}%) ETA: {eta_precise}",
+        )
+        .unwrap()
+        .progress_chars("##-"),
+    );
+
     NUMBERS.iter().for_each(|&seven| {
         NUMBERS.par_iter().for_each(|&eight| {
             NUMBERS.iter().for_each(|&nine| {
@@ -47,8 +57,8 @@ fn main() {
             });
         });
 
-        println!("{seven}/{LIMIT}");
+        progress_bar.inc(1);
     });
 
-    println!("No number with a multiplicative persistence greater than 11 was found.");
+    progress_bar.finish();
 }
