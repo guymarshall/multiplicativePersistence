@@ -47,6 +47,7 @@ fn main() {
                 );
 
                 let number: Integer = Integer::from_str_radix(&result, 10).unwrap();
+                // TODO: use string directly instead of converting Integer to string
                 let steps: i8 = multiplicative_persistence(number);
 
                 if steps > 11 {

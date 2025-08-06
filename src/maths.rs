@@ -7,6 +7,7 @@ pub(crate) fn multiplicative_persistence(mut number: Integer) -> i8 {
 
     let mut buffer: String = String::with_capacity(1024);
 
+    // TODO: use string directly instead of converting Integer to string
     while number >= 10 {
         buffer.clear();
         write!(&mut buffer, "{number}").unwrap();
